@@ -11,11 +11,13 @@
         "sourceType": "module"
     },
     "rules": {
+        "camelcase": "off",
         "import/extensions": [
             "error",
             {
                 "js": "ignorePackages"
             }
         ]
+
     }
 }

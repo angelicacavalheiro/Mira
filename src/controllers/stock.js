@@ -14,7 +14,7 @@ async function stockGet(req, res) {
 }
 
 async function stockPost(req, res) {
-  const update_date = new Date;
+  const update_date = new Date();
   const {
     art_id,
     galery_id,

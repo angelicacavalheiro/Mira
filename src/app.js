@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import singUp from './controllers/signUp/signUp.js';
 import signIn from './controllers/signIn/signIn.js';
+import getCartItems from './controllers/cartItems/getCartItems.js';
 
 const app = express();
 app.use(cors());
@@ -14,5 +15,6 @@ app.get('/status', (req, res) => {
 
 app.post('/sign-up', singUp);
 app.post('/sign-in', signIn);
+app.get('/cart', getCartItems);
 
 export default app;

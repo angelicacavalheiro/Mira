@@ -1,6 +1,6 @@
 import connection from '../../database/database.js';
 
-async function getCartItems(req, res) {
+async function postCancelItem(req, res) {
   const authorization = req.headers.authorization;
   const token = authorization?.replace('Bearer ', '');
 
@@ -18,22 +18,19 @@ async function getCartItems(req, res) {
     }
 
     const userId = findToken.rows[0].user_id;
+    const { id } = req.body;
 
-    const result = await connection.query(
+    await connection.query(
       `
-       SELECT transactions.carrier_quantity, transactions.id, arts.art_name, artists.artist_name, stock.price, stock.art_photo
-       FROM transactions JOIN stock ON transactions.art_stock_id = stock.id
-       JOIN arts ON stock.art_id = arts.id
-       JOIN artists ON arts.artist_id = artists.id
-       WHERE user_id = $1 AND status_id = 1;
+        UPDATE transactions SET status_id = 3 WHERE user_id = $1 AND id = $2;
     `,
-      [userId],
+      [userId, id],
     );
 
-    return res.send(result.rows);
+    return res.send(200);
   } catch (error) {
     return res.sendStatus(500);
   }
 }
 
-export default getCartItems;
+export default postCancelItem;

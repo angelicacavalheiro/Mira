@@ -17,6 +17,10 @@
             {
                 "js": "ignorePackages"
             }
+        ],
+        "indent": [
+            "error",
+            2
         ]
 
     }

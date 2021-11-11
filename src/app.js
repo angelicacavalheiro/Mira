@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import singUp from './controllers/signUp/signUp.js';
 import signIn from './controllers/signIn/signIn.js';
+import getOneGallery from './controllers/gallery.js';
 
 const app = express();
 app.use(cors());
@@ -14,5 +15,7 @@ app.get('/status', (req, res) => {
 
 app.post('/sign-up', singUp);
 app.post('/sign-in', signIn);
+
+app.get('/gallery/:idGallery', getOneGallery);
 
 export default app;

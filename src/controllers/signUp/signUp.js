@@ -3,7 +3,9 @@ import connection from '../../database/database.js';
 import signUpSchema from '../../schemas/signUpSchema.js';
 
 async function singUp(req, res) {
-  const { email, password, username, adress } = req.body;
+  const {
+    email, password, username, adress,
+  } = req.body;
   const isCorrectBody = signUpSchema.validate(req.body);
 
   if (isCorrectBody.error) {
@@ -16,7 +18,7 @@ async function singUp(req, res) {
         SELECT * FROM users
         WHERE email = $1
     `,
-      [email]
+      [email],
     );
 
     if (existEmail.rowCount !== 0) {
@@ -29,7 +31,7 @@ async function singUp(req, res) {
         (name, email, password, adress)
         VALUES ($1, $2, $3, $4)
     `,
-      [username, email, passwordHash, adress]
+      [username, email, passwordHash, adress],
     );
     return res.sendStatus(200);
   } catch (erro) {

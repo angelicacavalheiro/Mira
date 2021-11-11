@@ -10,7 +10,7 @@ async function signIn(req, res) {
         SELECT * FROM users
         WHERE email = $1
     `,
-      [email]
+      [email],
     );
 
     const user = result.rows[0];
@@ -23,7 +23,7 @@ async function signIn(req, res) {
           INSERT INTO sessions ("user_id", token)
           VALUES ($1, $2)
         `,
-        [user.id, token]
+        [user.id, token],
       );
 
       res.send({

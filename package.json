@@ -5,7 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test npx jest",
+    "test": "NODE_ENV=test npx jest -i",
     "test:watch": "NODE_ENV=test npx jest --watchAll",
     "start": "NODE_ENV=prod npx nodemon server.js",
     "start:dev": "NODE_ENV=dev npx nodemon server.js",
@@ -33,9 +33,10 @@
   "devDependencies": {
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-config-prettier": "8.3.0",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-prettier": "^4.0.0",
     "husky": "^7.0.4",
-    "prettier": "2.4.1"
+    "prettier": "^2.4.1"
   }
 }

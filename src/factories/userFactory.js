@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
 import faker from 'faker';
+import { v4 as uuid } from 'uuid';
 import connection from '../database/database.js';
 
 async function createUser() {
@@ -12,7 +13,7 @@ async function createUser() {
   };
 
   const insertedUser = await connection.query(
-    `INSERT INTO users (name, email, password, adress) VALUES ($1, $2, $3, $4) RETURNING *`,
+    'INSERT INTO users (name, email, password, adress) VALUES ($1, $2, $3, $4) RETURNING *',
     [user.name, user.email, user.hashedPassword, user.adress]
   );
 
@@ -22,7 +23,20 @@ async function createUser() {
 }
 
 async function eraseUserAndSessionsTable() {
-  await connection.query(`DELETE FROM sessions;DELETE FROM users;`);
+  await connection.query('DELETE FROM sessions;DELETE FROM users;');
 }
 
-export { createUser, eraseUserAndSessionsTable };
+async function userSession(id) {
+  const token = uuid();
+  await connection.query(
+    `
+          INSERT INTO sessions (user_id, token)
+          VALUES ($1, $2)
+        `,
+    // eslint-disable-next-line comma-dangle
+    [id, token]
+  );
+  return token;
+}
+
+export { createUser, eraseUserAndSessionsTable, userSession };

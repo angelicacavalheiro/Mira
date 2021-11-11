@@ -40,12 +40,11 @@ async function getCheckoutList(req, res) {
     checkoutList.forEach(async (item) => {
       const transactionId = item.id;
       const idArt = item.art_stock_id;
-        console.log(idArt);
-      console.log(item.carrier_quantity);
       const newStockQuantity = Number(item.quantity) - Number(item.carrier_quantity);
-      console.log(newStockQuantity);
       await connection.query(`
-                UPDATE stock SET quantity = ${newStockQuantity} WHERE id = ${Number(idArt)};
+                UPDATE stock SET quantity = ${newStockQuantity} WHERE id = ${Number(
+        idArt
+      )};
             `);
       await connection.query(
         `UPDATE transactions SET status_id = 2 WHERE id = ${transactionId};`

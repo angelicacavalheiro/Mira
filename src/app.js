@@ -2,7 +2,6 @@ import express from 'express';
 import cors from 'cors';
 import singUp from './controllers/signUp/signUp.js';
 import signIn from './controllers/signIn/signIn.js';
-
 import { artistsGet, artistsPost } from './controllers/artists.js';
 import { galleryGet, galleryPost } from './controllers/galeries.js';
 import { artsGet, artsPost } from './controllers/arts.js';

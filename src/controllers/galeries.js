@@ -1,14 +1,20 @@
 import connection from '../database/database.js';
 
 async function galleryGet(req, res) {
+  if (req.query.galery_name === undefined) {
+    const result = await connection.query('SELECT * FROM galeries');
+
+    return res.status(200).send(result.rows);
+  }
+
   const query = `
     SELECT * 
       FROM galeries
-    WHERE galery_name = $1;
+    WHERE galery_name ILIKE $1;
   `;
 
   try {
-    const result = await connection.query(query, [req.query.galery_name]);
+    const result = await connection.query(query, [`%${req.query.galery_name}%`]);
 
     return res.status(200).send(result.rows);
   } catch (error) {

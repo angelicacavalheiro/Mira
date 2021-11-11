@@ -3,6 +3,7 @@ import connection from '../../database/database.js';
 import signUpSchema from '../../schemas/signUpSchema.js';
 
 async function singUp(req, res) {
+  // eslint-disable-next-line object-curly-newline
   const { email, password, username, adress } = req.body;
   const isCorrectBody = signUpSchema.validate(req.body);
 
@@ -16,6 +17,7 @@ async function singUp(req, res) {
         SELECT * FROM users
         WHERE email = $1
     `,
+      // eslint-disable-next-line comma-dangle
       [email]
     );
 
@@ -29,6 +31,7 @@ async function singUp(req, res) {
         (name, email, password, adress)
         VALUES ($1, $2, $3, $4)
     `,
+      // eslint-disable-next-line comma-dangle
       [username, email, passwordHash, adress]
     );
     return res.sendStatus(200);

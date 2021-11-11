@@ -12,8 +12,8 @@ async function createUser() {
   };
 
   const insertedUser = await connection.query(
-    `INSERT INTO users (name, email, password, adress) VALUES ($1, $2, $3, $4) RETURNING *`,
-    [user.name, user.email, user.hashedPassword, user.adress]
+    'INSERT INTO users (name, email, password, adress) VALUES ($1, $2, $3, $4) RETURNING *',
+    [user.name, user.email, user.hashedPassword, user.adress],
   );
 
   user.id = insertedUser.rows[0].id;
@@ -22,7 +22,7 @@ async function createUser() {
 }
 
 async function eraseUserAndSessionsTable() {
-  await connection.query(`DELETE FROM sessions;DELETE FROM users;`);
+  await connection.query('DELETE FROM sessions;DELETE FROM users;');
 }
 
 export { createUser, eraseUserAndSessionsTable };

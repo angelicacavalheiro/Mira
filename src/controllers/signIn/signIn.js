@@ -10,6 +10,7 @@ async function signIn(req, res) {
         SELECT * FROM users
         WHERE email = $1
     `,
+      // eslint-disable-next-line comma-dangle
       [email]
     );
 
@@ -23,6 +24,7 @@ async function signIn(req, res) {
           INSERT INTO sessions ("user_id", token)
           VALUES ($1, $2)
         `,
+        // eslint-disable-next-line comma-dangle
         [user.id, token]
       );
 

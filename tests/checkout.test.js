@@ -40,7 +40,11 @@ describe('GET /checkout', () => {
     const transaction = await createTransactions(user.id);
     const transactionId = transaction.id;
     const bigNumber = 1000000;
-    await connection.query(`UPDATE transactions SET carrier_quantity = ${bigNumber} WHERE id = ${Number(transactionId)}`);
+    await connection.query(
+      `UPDATE transactions SET carrier_quantity = ${bigNumber} WHERE id = ${Number(
+        transactionId
+      )}`
+    );
     const result = await supertest(app)
       .get('/checkout')
       .set('Authorization', `Bearer ${token}`);

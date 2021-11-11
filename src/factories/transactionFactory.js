@@ -9,6 +9,5 @@ export default async function createTransactions(userId) {
     INSERT INTO transactions (art_stock_id, carrier_quantity, user_id, status_id, upadate_status_date) VALUES (${stockId}, 1, ${userId}, 1, '2021/11/09') RETURNING *;
           `
   );
-  console.log(transaction.rows[0]);
   return transaction.rows[0];
 }

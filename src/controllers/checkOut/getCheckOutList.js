@@ -10,7 +10,7 @@ async function getCheckoutList(req, res) {
       `
         SELECT * FROM sessions WHERE token = $1;
         `,
-      [token]
+      [token],
     );
 
     if (findToken.rowCount === 0) {
@@ -27,12 +27,12 @@ async function getCheckoutList(req, res) {
        JOIN artists ON arts.artist_id = artists.id
        WHERE user_id = $1 AND status_id = 1;
     `,
-      [userId]
+      [userId],
     );
 
     const checkoutList = result.rows;
     const outOfStock = checkoutList.filter(
-      (item) => item.carrier_quantity > item.quantity
+      (item) => item.carrier_quantity > item.quantity,
     );
     if (outOfStock.length > 0) {
       return res.status(405).send(outOfStock);
@@ -42,12 +42,10 @@ async function getCheckoutList(req, res) {
       const idArt = item.art_stock_id;
       const newStockQuantity = Number(item.quantity) - Number(item.carrier_quantity);
       await connection.query(`
-                UPDATE stock SET quantity = ${newStockQuantity} WHERE id = ${Number(
-        idArt
-      )};
+                UPDATE stock SET quantity = ${newStockQuantity} WHERE id = ${Number(idArt)};
             `);
       await connection.query(
-        `UPDATE transactions SET status_id = 2 WHERE id = ${transactionId};`
+        `UPDATE transactions SET status_id = 2 WHERE id = ${transactionId};`,
       );
     });
 

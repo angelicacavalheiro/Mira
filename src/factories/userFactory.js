@@ -14,7 +14,7 @@ async function createUser() {
 
   const insertedUser = await connection.query(
     'INSERT INTO users (name, email, password, adress) VALUES ($1, $2, $3, $4) RETURNING *',
-    [user.name, user.email, user.hashedPassword, user.adress]
+    [user.name, user.email, user.hashedPassword, user.adress],
   );
 
   user.id = insertedUser.rows[0].id;

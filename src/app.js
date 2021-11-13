@@ -10,6 +10,7 @@ import { galleryGet, galleryPost } from './controllers/galeries.js';
 import { artsGet, artsPost } from './controllers/arts.js';
 import { artCategoryGet, artCategoryPost } from './controllers/artCategory.js';
 import { stockGet, stockPost } from './controllers/stock.js';
+import checkStock from './controllers/checkOut/checkStock.js';
 
 const app = express();
 app.use(cors());
@@ -37,8 +38,11 @@ app.get('/status', (req, res) => {
 
 app.post('/sign-up', singUp);
 app.post('/sign-in', signIn);
+
 app.get('/cart', getCartItems);
 app.post('/cart', postCancelItem);
+
+app.get('/checkstock', checkStock);
 app.get('/checkout', getCheckOutList);
 
 export default app;

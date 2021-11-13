@@ -8,13 +8,13 @@ beforeEach(async () => {
   await createStock();
 });
 
-afterAll(async () => {
-  await connection.query('DELETE FROM stock;');
-  await connection.query('DELETE FROM arts;');
-  await connection.query('DELETE FROM art_category;');
-  await connection.query('DELETE FROM artists;');
-  await connection.query('DELETE FROM galeries;');
-});
+// afterAll(async () => {
+//   await connection.query('DELETE FROM stock;');
+//   await connection.query('DELETE FROM arts;');
+//   await connection.query('DELETE FROM art_category;');
+//   await connection.query('DELETE FROM artists;');
+//   await connection.query('DELETE FROM galeries;');
+// });
 
 afterAll(() => {
   connection.end();
@@ -22,8 +22,7 @@ afterAll(() => {
 
 describe('GET /stock', () => {
   it('returns 200 for valid stock', async () => {
-    const result = await supertest(app)
-      .get('/stock');
+    const result = await supertest(app).get('/stock');
 
     expect(result.status).toEqual(200);
     expect(result.body[0]).toHaveProperty('id');
@@ -39,16 +38,14 @@ describe('GET /stock', () => {
 describe('POST /stock', () => {
   test('returns 200 when stock post is correct', async () => {
     const stock = await createStock();
-    const result = await supertest(app)
-      .post('/stock')
-      .send({
-        art_id: stock.art_id,
-        galery_id: stock.galery_id,
-        price: stock.price,
-        quantity: stock.quantity,
-        update_date: stock.update_date,
-        art_photo: stock.art_photo,
-      });
+    const result = await supertest(app).post('/stock').send({
+      art_id: stock.art_id,
+      galery_id: stock.galery_id,
+      price: stock.price,
+      quantity: stock.quantity,
+      update_date: stock.update_date,
+      art_photo: stock.art_photo,
+    });
     expect(result.status).toEqual(200);
   });
 });

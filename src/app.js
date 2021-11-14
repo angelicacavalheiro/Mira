@@ -8,6 +8,8 @@ import { artsGet, artsPost } from './controllers/arts.js';
 import { artCategoryGet, artCategoryPost } from './controllers/artCategory.js';
 import { stockGet, stockPost } from './controllers/stock.js';
 import getOneGallery from './controllers/gallery.js';
+import getOneArt from './controllers/art.js';
+import { postTransaction, getTransaction } from './controllers/transaction.js';
 
 const app = express();
 app.use(cors());
@@ -37,5 +39,8 @@ app.post('/sign-up', singUp);
 app.post('/sign-in', signIn);
 
 app.get('/gallery/:idGallery', getOneGallery);
+app.get('/art/:idArt', getOneArt);
+app.post('/transaction', postTransaction);
+app.get('/transaction', getTransaction);
 
 export default app;

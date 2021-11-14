@@ -3,8 +3,8 @@ import connection from '../database/database.js';
 async function stockGet(req, res) {
   try {
     const result = await connection.query(`
-    SELECT * 
-      FROM stock
+    SELECT stock.*, arts.art_name
+      FROM stock JOIN arts ON stock.art_id = arts.id
   `);
 
     return res.status(200).send(result.rows);

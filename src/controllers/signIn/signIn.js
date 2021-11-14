@@ -32,7 +32,7 @@ async function signIn(req, res) {
         name: user.name,
         token,
         email: user.email,
-        adress: user.adresss,
+        adress: user.adress,
       });
     } else {
       // usuário não encontrado (email ou senha incorretos)

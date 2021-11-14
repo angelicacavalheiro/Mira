@@ -1,7 +1,7 @@
 import connection from '../../database/database.js';
 
 async function getCheckoutList(req, res) {
-  const authorization = req.headers.authorization;
+  const { authorization } = req.headers;
   const token = authorization?.replace('Bearer ', '');
 
   if (!token) return res.sendStatus(401);

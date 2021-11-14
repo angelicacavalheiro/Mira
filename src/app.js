@@ -10,6 +10,9 @@ import { galleryGet, galleryPost } from './controllers/galeries.js';
 import { artsGet, artsPost } from './controllers/arts.js';
 import { artCategoryGet, artCategoryPost } from './controllers/artCategory.js';
 import { stockGet, stockPost } from './controllers/stock.js';
+import getOneGallery from './controllers/gallery.js';
+import getOneArt from './controllers/art.js';
+import { postTransaction, getTransaction } from './controllers/transaction.js';
 import checkStock from './controllers/checkOut/checkStock.js';
 
 const app = express();
@@ -38,6 +41,11 @@ app.get('/status', (req, res) => {
 
 app.post('/sign-up', singUp);
 app.post('/sign-in', signIn);
+
+app.get('/gallery/:idGallery', getOneGallery);
+app.get('/art/:idArt', getOneArt);
+app.post('/transaction', postTransaction);
+app.get('/transaction', getTransaction);
 
 app.get('/cart', getCartItems);
 app.post('/cart', postCancelItem);

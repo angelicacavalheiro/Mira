@@ -11,7 +11,7 @@ export default async function createStock() {
     `
         INSERT INTO artists (artist_name, description, photo) VALUES ($1, $2, $3) RETURNING *;
         `,
-    [artist.name, artist.description, artist.photo]
+    [artist.name, artist.description, artist.photo],
   );
   const artistId = insertArtist.rows[0].id;
 
@@ -22,7 +22,7 @@ export default async function createStock() {
     `
         INSERT INTO art_category (category_name) VALUES ($1) RETURNING *;
         `,
-    [category.name]
+    [category.name],
   );
   const categoryId = insertArtCategory.rows[0].id;
 
@@ -36,7 +36,7 @@ export default async function createStock() {
     `
           INSERT INTO arts (art_name, artist_id, art_category_id, size) VALUES ($1, $2, $3, $4) RETURNING *;
           `,
-    [art.name, art.artist_id, art.art_category_id, art.size]
+    [art.name, art.artist_id, art.art_category_id, art.size],
   );
   const artId = insertArt.rows[0].id;
 
@@ -55,7 +55,7 @@ export default async function createStock() {
       gallery.phone_number,
       gallery.description,
       gallery.adress,
-    ]
+    ],
   );
   const galleryId = insertGallery.rows[0].id;
 
@@ -79,7 +79,7 @@ export default async function createStock() {
       stock.quantity,
       stock.update_date,
       stock.art_photo,
-    ]
+    ],
   );
   return stockInserted.rows[0];
 }

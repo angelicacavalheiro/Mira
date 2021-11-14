@@ -1,14 +1,11 @@
 import supertest from 'supertest';
 import connection from '../src/database/database.js';
 import app from '../src/app.js';
-import {
-  createUser,
-  eraseUserAndSessionsTable,
-} from '../src/factories/userFactory.js';
+import { createUser } from '../src/factories/userFactory.js';
 
 describe('POST /sign-in', () => {
   afterAll(async () => {
-    await eraseUserAndSessionsTable();
+    //await eraseUserAndSessionsTable();
     connection.end();
   });
   test('returns 200 and body when login is correct', async () => {

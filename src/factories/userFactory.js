@@ -31,7 +31,7 @@ async function userSession(id) {
   await connection.query(
     `
           INSERT INTO sessions (user_id, token)
-          VALUES ($1, $2)
+          VALUES ($1, $2) RETURNING *
         `,
     // eslint-disable-next-line comma-dangle
     [id, token]

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import supertest from 'supertest';
 import createTransactions from '../src/factories/transactionFactory.js';
 import { createUser, userSession } from '../src/factories/userFactory.js';

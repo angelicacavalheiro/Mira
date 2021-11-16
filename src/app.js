@@ -19,6 +19,14 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.get('/status', (req, res) => {
+  // Manda como resposta o texto 'Hello World'
+  res.send('Server online');
+});
+
+app.post('/sign-up', singUp);
+app.post('/sign-in', signIn);
+
 app.post('/artists', artistsPost);
 app.get('/artists', artistsGet);
 
@@ -33,14 +41,6 @@ app.post('/artCategory', artCategoryPost);
 
 app.get('/stock', stockGet);
 app.post('/stock', stockPost);
-
-app.get('/status', (req, res) => {
-  // Manda como resposta o texto 'Hello World'
-  res.send('Server online');
-});
-
-app.post('/sign-up', singUp);
-app.post('/sign-in', signIn);
 
 app.get('/gallery/:idGallery', getOneGallery);
 app.get('/art/:idArt', getOneArt);

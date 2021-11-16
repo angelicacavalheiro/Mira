@@ -5,7 +5,7 @@ export default async function getOneGallery(req, res) {
   try {
     const result = await connection.query(
       `
-      SELECT stock.id as "idStock", stock.price as "price", stock.art_photo,
+      SELECT stock.id as "idStock", stock.quantity, stock.price as "price", stock.art_photo,
        galeries.*, arts.art_name,
        artists.artist_name, artists.description as "artistDescription", artists.photo as "artistPhoto"
       FROM stock 

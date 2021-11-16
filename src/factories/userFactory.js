@@ -8,8 +8,8 @@ async function createUser() {
     name: faker.name.findName(),
     email: faker.internet.email(),
     password: '123456',
+    adress: faker.address.streetName(),
     hashedPassword: bcrypt.hashSync('123456', 10),
-    adress: faker.address.streetName,
   };
 
   const insertedUser = await connection.query(

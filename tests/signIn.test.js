@@ -18,7 +18,7 @@ describe('POST /sign-in', () => {
       name: user.name,
       token: expect.any(String),
       email: user.email,
-      adress: user.adresss,
+      adress: user.adress,
     });
   });
 

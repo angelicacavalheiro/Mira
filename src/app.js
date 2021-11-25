@@ -1,6 +1,5 @@
 import express from 'express';
 import cors from 'cors';
-import signIn from './controllers/signIn/signIn.js';
 import getCartItems from './controllers/cartItems/getCartItems.js';
 import postCancelItem from './controllers/cartItems/postCancelItem.js';
 import getCheckOutList from './controllers/checkOut/getCheckOutList.js';
@@ -15,6 +14,7 @@ import { postTransaction, getTransaction } from './controllers/transaction.js';
 import checkStock from './controllers/checkOut/checkStock.js';
 import logout from './controllers/logout.js';
 import * as signUpController from './controllers/signUpController/signUp.js';
+import * as signInController from './controllers/signInController/signIn.js';
 
 const app = express();
 app.use(cors());
@@ -26,7 +26,7 @@ app.get('/status', (req, res) => {
 });
 
 app.post('/sign-up', signUpController.singUp);
-app.post('/sign-in', signIn);
+app.post('/sign-in', signInController.signIn);
 app.post('/logout', logout);
 
 app.post('/artists', artistsPost);

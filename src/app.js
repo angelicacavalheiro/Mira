@@ -3,7 +3,6 @@ import cors from 'cors';
 import getCartItems from './controllers/cartItems/getCartItems.js';
 import postCancelItem from './controllers/cartItems/postCancelItem.js';
 import getCheckOutList from './controllers/checkOut/getCheckOutList.js';
-import { artistsGet, artistsPost } from './controllers/artists.js';
 import { galleryGet, galleryPost } from './controllers/galeries.js';
 import { artsGet, artsPost } from './controllers/arts.js';
 import { artCategoryGet, artCategoryPost } from './controllers/artCategory.js';
@@ -15,6 +14,7 @@ import checkStock from './controllers/checkOut/checkStock.js';
 import logout from './controllers/logout.js';
 import * as signUpController from './controllers/signUpController/signUp.js';
 import * as signInController from './controllers/signInController/signIn.js';
+import * as artistsController from './controllers/artists.js';
 
 const app = express();
 app.use(cors());
@@ -29,8 +29,8 @@ app.post('/sign-up', signUpController.singUp);
 app.post('/sign-in', signInController.signIn);
 app.post('/logout', logout);
 
-app.post('/artists', artistsPost);
-app.get('/artists', artistsGet);
+app.post('/artists', artistsController.artistsPost);
+app.get('/artists', artistsController.artistsGet);
 
 app.get('/galeries', galleryGet);
 app.post('/galeries', galleryPost);
@@ -46,6 +46,7 @@ app.post('/stock', stockPost);
 
 app.get('/gallery/:idGallery', getOneGallery);
 app.get('/art/:idArt', getOneArt);
+
 app.post('/transaction', postTransaction);
 app.get('/transaction', getTransaction);
 

@@ -1,10 +1,10 @@
-import connection from '../database/database.js';
+/* eslint-disable consistent-return */
+import * as service from '../services/artistsService.js';
 
 async function artistsGet(req, res) {
   try {
-    const result = await connection.query('SELECT * FROM artists;');
-
-    return res.status(200).send(result.rows);
+    const artists = await service.requisition();
+    return res.status(200).send(artists);
   } catch (error) {
     return res.sendStatus(500);
   }
@@ -18,13 +18,16 @@ async function artistsPost(req, res) {
   } = req.body;
 
   try {
-    await connection.query(`
-      INSERT INTO artists (artist_name, description, photo) VALUES ($1, $2, $3);
-      `, [artist_name, description, photo]);
-
-    res.sendStatus(200);
+    const insert = await service.requestInsert({
+      artist_name,
+      description,
+      photo,
+    });
+    if (insert) {
+      return res.sendStatus(200);
+    }
   } catch (error) {
-    res.sendStatus(500);
+    return res.sendStatus(500);
   }
 }
 

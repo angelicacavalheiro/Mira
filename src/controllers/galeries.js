@@ -1,22 +1,11 @@
-import connection from '../database/database.js';
+/* eslint-disable consistent-return */
+import * as service from '../services/galeriesService.js';
 
 async function galleryGet(req, res) {
-  if (req.query.galery_name === undefined) {
-    const result = await connection.query('SELECT * FROM galeries');
-
-    return res.status(200).send(result.rows);
-  }
-
-  const query = `
-    SELECT * 
-      FROM galeries
-    WHERE galery_name ILIKE $1;
-  `;
-
+  const { query } = req;
   try {
-    const result = await connection.query(query, [`%${req.query.galery_name}%`]);
-
-    return res.status(200).send(result.rows);
+    const result = await service.searchForGaleries({ query });
+    return res.status(200).send(result);
   } catch (error) {
     return res.sendStatus(500);
   }
@@ -31,13 +20,17 @@ async function galleryPost(req, res) {
   } = req.body;
 
   try {
-    await connection.query(`
-      INSERT INTO galeries (galery_name, phone_number, description, adress) VALUES ($1, $2, $3, $4);
-      `, [galery_name, phone_number, description, adress]);
-
-    res.sendStatus(200);
+    const result = await service.requestInsert({
+      galery_name,
+      phone_number,
+      description,
+      adress,
+    });
+    if (result) {
+      return res.sendStatus(200);
+    }
   } catch (error) {
-    res.sendStatus(500);
+    return res.sendStatus(500);
   }
 }
 

@@ -1,7 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import getCartItems from './controllers/cartItems/getCartItems.js';
-import postCancelItem from './controllers/cartItems/postCancelItem.js';
+import postCancelItem from './controllers/cartItemsController/postCancelItem.js';
 import getCheckOutList from './controllers/checkOut/getCheckOutList.js';
 import getOneGallery from './controllers/gallery.js';
 import getOneArt from './controllers/art.js';
@@ -9,12 +8,13 @@ import checkStock from './controllers/checkOut/checkStock.js';
 import logout from './controllers/logout.js';
 import * as signUpController from './controllers/signUpController/signUp.js';
 import * as signInController from './controllers/signInController/signIn.js';
-import * as artistsController from './controllers/artists.js';
+import * as artistsController from './controllers/artistsController.js';
 import * as galeriesController from './controllers/galeriesController.js';
 import * as artsController from './controllers/artsController.js';
 import * as artCategoryController from './controllers/artCategoryController.js';
 import * as stockController from './controllers/stockController.js';
 import * as transactionController from './controllers/transactionController.js';
+import * as cartController from './controllers/cartItemsController/getCartItems.js';
 
 const app = express();
 app.use(cors());
@@ -50,7 +50,7 @@ app.get('/art/:idArt', getOneArt);
 app.post('/transaction', transactionController.postTransaction);
 app.get('/transaction', transactionController.getTransaction);
 
-app.get('/cart', getCartItems);
+app.get('/cart', cartController.getCartItems);
 app.post('/cart', postCancelItem);
 
 app.get('/checkstock', checkStock);

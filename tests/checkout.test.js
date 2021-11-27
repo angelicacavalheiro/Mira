@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 import supertest from 'supertest';
 import createTransactions from '../src/factories/transactionFactory.js';
 import { createUser, userSession } from '../src/factories/userFactory.js';
@@ -42,8 +44,8 @@ describe('GET /checkout', () => {
     const bigNumber = 1000000;
     await connection.query(
       `UPDATE transactions SET carrier_quantity = ${bigNumber} WHERE id = ${Number(
-        transactionId
-      )}`
+        transactionId,
+      )}`,
     );
     const result = await supertest(app)
       .get('/checkout')

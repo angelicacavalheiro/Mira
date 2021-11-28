@@ -71,15 +71,23 @@ $ cd Mira
 $ npm install
 ```
 
+**Run the application in production mode**
+
+```
+$ ntl -> start
+```
 **Run the application in development mode**
 
 Create a .env.dev file and fill it using your environment variables following the .env.example
+You can find the .env.example [here](https://github.com/angelicacavalheiro/Mira/blob/main/.env.example).
 
 ```
 $ ntl -> start:dev
 ```
 
-You can find the .env.example [here](https://github.com/angelicacavalheiro/Mira/blob/main/.env.example).
+In this case you need to adapt the routes that access the backend, on the front. 
+
+##
 
 ## Built With
 **Server**  ([NodeJS](https://nodejs.org/en/))

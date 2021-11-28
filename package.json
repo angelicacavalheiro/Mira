@@ -26,19 +26,19 @@
     "faker": "^5.5.3"
   },
   "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
+    "babel-jest": "^27.3.1",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-prettier": "^4.0.0",
     "husky": "^7.0.4",
-    "prettier": "^2.4.1",
-    "@babel/plugin-transform-runtime": "^7.16.0",
-    "@babel/preset-env": "^7.16.0",
-    "babel-jest": "^27.3.1",
     "jest": "^27.3.1",
     "joi": "^17.4.2",
     "ntl": "^5.1.0",
+    "prettier": "^2.4.1",
     "supertest": "^6.1.6"
   }
 }

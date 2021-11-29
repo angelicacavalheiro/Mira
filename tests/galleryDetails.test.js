@@ -31,4 +31,3 @@ describe('GET /gallery/:idGallery', () => {
     expect(result.body[0]).toHaveProperty('artistPhoto');
   });
 });
-

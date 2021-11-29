@@ -116,4 +116,4 @@ In this case you need to adapt the routes that access the backend, on the front.
 ##
 
 ## Author
-Developed by Angélica Cavalheiro Rodrigues e Diego Nogueira.
+Developed by Angélica Cavalheiro Rodrigues and Diego Nogueira.

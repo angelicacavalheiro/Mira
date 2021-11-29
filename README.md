@@ -21,7 +21,7 @@ Access the database
 ```
 $ \c mira_dev
 ```
-Now, just run the commands listed in <a href="https://github.com/angelicacavalheiro/Mira">dump.sql</a>
+Now, just run the commands listed in <a href="https://github.com/angelicacavalheiro/Mira/blob/main/dump.sql">dump.sql</a>
 
 ---
 ## How it works
